@@ -1,0 +1,47 @@
+name: CI
+
+on:
+
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # https://chocolatey.org/
+      - name: choco list --local
+        run: choco list --local
+
+      - name: gci env:*
+        run: gci env:*
+
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: dpkg -l
+        run: dpkg -l
+
+      - name: export -p
+        run: export -p
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # https://brew.sh/
+      - name: brew list
+        run: brew list
+
+      - name: export -p
+        run: export -p
