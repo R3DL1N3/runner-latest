@@ -20,6 +20,9 @@ jobs:
       - name: choco list --local
         run: choco list --local
 
+      - name: gci env:*
+        run: gci env:*
+
   build-ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +30,9 @@ jobs:
 
       - name: dpkg -l
         run: dpkg -l
+
+      - name: export -p
+        run: export -p
 
   build-macos:
     runs-on: macos-latest
@@ -36,3 +42,6 @@ jobs:
       # https://brew.sh/
       - name: brew list
         run: brew list
+
+      - name: export -p
+        run: export -p
