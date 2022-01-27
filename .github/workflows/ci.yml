@@ -16,12 +16,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # https://chocolatey.org/
+      - name: choco list --local
+        run: choco list --local
+
   build-ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
+      - name: dpkg -l
+        run: dpkg -l
+
   build-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+
+      # https://brew.sh/
+      - name: brew list
+        run: brew list
